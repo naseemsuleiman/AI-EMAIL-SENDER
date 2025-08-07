@@ -8,13 +8,7 @@ from ai_generator import generate_email
 
 app = FastAPI()
 
-# Mount frontend build folder
-app.mount("/", StaticFiles(directory="../frontend/dist", html=True), name="static")
 
-# Catch-all route to serve index.html for React Router
-@app.get("/{full_path:path}")
-async def catch_all(full_path: str):
-    return FileResponse("../frontend/dist/index.html")
 
 app.add_middleware(
     CORSMiddleware, allow_origins=["*"], allow_methods=["*"], allow_headers=["*"]
